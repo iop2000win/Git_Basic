@@ -64,6 +64,7 @@ git push -f origin main # -f force
 		- Changes to be committed: 커밋시 변동될 파일 리스트
 	3 . git commit -m "[기록 메모]": 스테이지 영역에 있는 파일을 저장소에 업데이트 하는 기능
 		git commit --amend : 가장 최근의 커밋 메시지 수정
+		git commit -am ""
 	4 . git push [remote] [branch]: 로컬 브랜츠의 결과를 원격 저장소에 업데이트 하는 기능
 	5 . git log: 저장소에 저장된 버전 확인
 		git log --stat: 변경 내용까지 조회
@@ -74,6 +75,7 @@ git push -f origin main # -f force
 		git restore --source [git_hash] [file_name]: 특정 커밋 시점(git_hash)으로 해당 파일을 되돌림
 		git restore --staged [file_name]: 스테이징된 특정파일의 스테이징을 취소함
 	10. git reset --hard [git_hash]: 특정 커밋 시점으로 완전히 돌아감
+		git reset --soft [git_hash]: soft의 경우, 커밋과 스테이징에서는 사라지지만 작업 공간에서의 파일은 그대로 유지되어 있는 상태로 돌아간다.
 	11. git revert [git_hash]: 특정 커밋(git_hash)을 취소하는 기능, 복수의 커밋 아이디 입력 가능
 '''
 
