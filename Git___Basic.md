@@ -145,3 +145,54 @@
  
 	touch .gitignore
 	vi .gitignore
+
+
+### branch 관리
+	1. git branch [브랜치명] : 새로운 브랜치 생성
+ 	2. git switch [브랜치명] : 원하는 브랜치로 작업 공간 변경
+  	3. git merge [브랜치명] : 메인 브랜치에 특정 브랜치의 내용 병합 # 메인 브랜치에서 작동해야함
+   	4. git log --oneline --branches --graph : 브랜치 별로 커밋된 작업을 확인하기 위한 방법
+	   git log --oneline --all --graph
+	5. git log [비교 브랜치1]..[비교 브랜2] : 두 브랜치 간의 차이를 확인할 수 있음. 왼쪽 브랜치 기준으로 오른쪽 브랜치의 변경점 확인
+ 	6. git branch -d [브랜치명] : merge가 완료된 브랜치 삭제
+  	   git branch -D [브랜치명] : merge를 안한 브랜치 삭제
+
+	# 연습 프로세스
+ 	----------------------------------------------------------------------------------------
+	vi branch_conflict_test.txt  #conflict 테스트를 위한 파일
+ 
+ 	git branch branch_test  #branch_test라는 브랜치 생성
+	git switch branch_test  #branch_test 브랜치로 작업 공간 변경
+
+	vi branch_test.txt  #브랜치에서 일련의 코드 작업 진행
+	git add .
+	git commit -m "브랜치 테스트"
+
+	git switch main
+	git status
+	git log  #branch_test에서 진행한 작업들은 main 브랜치에 반영이 안되어있다.
+
+	* conflict 발생 케이스 테스트
+	git switch main
+	vi branch_conflict_test.txt  #첫째 줄에 변경 작업 진행
+ 	git add .
+  	git commit -m "conflict test -main"
+
+	git switch branch_test
+ 	vi branch_conflict_test.txt  #첫째 줄에 변경 작업 진행
+  	git add .
+   	git commit -m "conflict test -branch"
+
+ 	git switch main
+  	git merge branch_test  #동일한 파일, 동일한 지점에 대한 변경 작업이 메인과 브랜치에서 모두 진행되어 컨플릭트 발생
+
+   	'''
+	Auto-merging branch_conflict_test.txt
+	CONFLICT (content): Merge conflict in branch_conflict_test.txt
+	Automatic merge failed; fix conflicts and then commit the result.
+	'''
+
+ 	vi branch_conflict_test.txt  #충돌이 발생한 부분에 대해서 수동으로 수정 작업을 진행한 후, 다시 커밋
+  	git add .
+   	git commit -m "conflict 해결"
+	git push
