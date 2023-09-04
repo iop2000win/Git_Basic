@@ -196,3 +196,51 @@
   	git add .
    	git commit -m "conflict 해결"
 	git push
+
+
+### Online Repository(원격 저장소)에 대한 이해, git push, git clone, git branch
+	1. 깃허브에서 원격 저장소 생성
+ 	2. 로컬 저장소에 있는 파일을 원격 저장소에 백업
+  	3. 협업 시에, git push를 하기 위해서는 git pull이 선행되어야 한다.
+   		(로컬 저장소와 원격 저장소 간에 차이가 있기 때문에)
+	4. git pull [원격 저장소 url]  #-u 옵션을 설정한 후면 생략 가능
+ 	5. git push
+
+	# 연습 프로세스(git push)
+ 	----------------------------------------------------------------------------------------
+  	로컬 저장소 생성
+   	git init
+	git branch -M main
+ 	git add .
+  	git commit -m "a 만들었음"
+   	git push -u [원격 저장소 url] main(로컬 저장소 이름)
+
+ 	git remote add [변수명] [원격 저장소 url]  #변수명에 원격저장소 url 값을 저장
+  	git push -u [변수명] main
+
+   	git push
+
+	# 연습 프로세스(git clone)
+ 	----------------------------------------------------------------------------------------
+  	git clone [원격 저장소 url]
+   
+   	git pull [원격 저장소 url]
+   	git pull [변수명]
+	git pull [변수명] [브랜치명]  #특정 브랜치에 pull 진행
+
+ 	(git pull 작업 시에도 conflict error가 발생할 수 있다.)
+
+	# 연습 프로세스(git branch)
+ 	----------------------------------------------------------------------------------------
+  	git branch branch_test
+   	git switch branch_test
+	
+ 	touch branch_test_1
+ 	git add .
+  	git commit -m 'branch_test_1 생성'
+   	
+	touch branch_test_2
+ 	git add .
+  	git commit -m 'branch_test_1 수정'
+
+   	
